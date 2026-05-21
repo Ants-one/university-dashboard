@@ -118,7 +118,7 @@ st.sidebar.title("🎓 Filters")
 # Year filter
 years = sorted(df["Year"].unique())
 selected_years = st.sidebar.multiselect(
-    "📅 Year(s)",
+    "Year(s)",
     years,
     default=years,
     help="Select one or more years to display"
@@ -127,7 +127,7 @@ selected_years = st.sidebar.multiselect(
 # Term filter
 terms = sorted(df["Term"].unique())
 selected_terms = st.sidebar.multiselect(
-    "📆 Term(s)",
+    "Term(s)",
     terms,
     default=terms,
     help="Select Spring, Fall, or both"
@@ -135,7 +135,7 @@ selected_terms = st.sidebar.multiselect(
 
 # Department filter
 selected_depts = st.sidebar.multiselect(
-    "🏫 Department(s)",
+    "Department(s)",
     list(DEPARTMENT_COLUMNS.keys()),
     default=list(DEPARTMENT_COLUMNS.keys()),
     help="Select departments to analyze"
@@ -270,7 +270,7 @@ st.caption("Data Mining Activity I · Universidad de la Costa")
 st.markdown("---")
 
 #KPI Cards
-st.subheader("📊 Key Performance Indicators")
+st.subheader("Key Performance Indicators")
 
 kpis = calculate_kpis(filtered)
 
@@ -288,7 +288,7 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("📈 Retention Rate Over Time")
+    st.subheader("Retention Rate Over Time")
     ret_df = filtered.groupby("Year")["Retention Rate (%)"].mean().reset_index()
     fig1 = create_line_chart(
         ret_df,
@@ -301,7 +301,7 @@ with col1:
     st.plotly_chart(fig1, use_container_width=True)
 
 with col2:
-    st.subheader("😊 Student Satisfaction by Year")
+    st.subheader("Student Satisfaction by Year")
     sat_df = filtered.groupby("Year")["Student Satisfaction (%)"].mean().reset_index()
     fig2 = create_line_chart(
         sat_df,
@@ -317,7 +317,7 @@ with col2:
 col3, col4 = st.columns(2)
 
 with col3:
-    st.subheader("📊 Applications vs Enrolled by Year")
+    st.subheader("Applications vs Enrolled by Year")
     bar_df = filtered.groupby("Year")[["Applications", "Enrolled"]].mean().reset_index()
     fig3 = create_bar_chart(
         bar_df,
@@ -330,7 +330,7 @@ with col3:
     st.plotly_chart(fig3, use_container_width=True)
 
 with col4:
-    st.subheader("🌸 Spring vs Fall — Avg Enrolled")
+    st.subheader("Spring vs Fall — Avg Enrolled")
     term_df = filtered.groupby("Term")["Enrolled"].mean().reset_index()
     fig4 = create_bar_chart(
         term_df,
@@ -346,7 +346,7 @@ with col4:
 
 #Department Breakdown
 st.markdown("---")
-st.subheader("🏫 Enrollment by Department")
+st.subheader("Enrollment by Department")
 
 selected_cols = [
     DEPARTMENT_COLUMNS[dept]
@@ -399,7 +399,7 @@ with col6:
 
 #Correlation Analysis
 st.markdown("---")
-st.subheader("🔍 Satisfaction vs Retention Correlation")
+st.subheader("Satisfaction vs Retention Correlation")
 
 scatter_df = filtered.groupby("Year")[
     ["Retention Rate (%)", "Student Satisfaction (%)"]
@@ -416,7 +416,7 @@ st.plotly_chart(fig7, use_container_width=True)
 
 #Data Export Section
 st.markdown("---")
-st.subheader("📥 Export Data")
+st.subheader("Export Data")
 
 col_exp1, col_exp2 = st.columns(2)
 
@@ -424,7 +424,7 @@ with col_exp1:
     # Export filtered data as CSV
     csv = filtered.to_csv(index=False)
     st.download_button(
-        label="📊 Download Filtered Data (CSV)",
+        label="Download Filtered Data (CSV)",
         data=csv,
         file_name=f"university_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
         mime="text/csv",
@@ -447,7 +447,7 @@ with col_exp2:
     summary_df = pd.DataFrame(summary_stats)
     csv_summary = summary_df.to_csv(index=False)
     st.download_button(
-        label="📈 Download Summary Stats (CSV)",
+        label="Download Summary Stats (CSV)",
         data=csv_summary,
         file_name=f"summary_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
         mime="text/csv",
