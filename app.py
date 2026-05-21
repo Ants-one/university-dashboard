@@ -1,11 +1,3 @@
-"""
-University Student Analytics Dashboard
-A comprehensive Streamlit dashboard for analyzing university enrollment, 
-retention, and satisfaction metrics.
-
-Author: Data Mining Team - Universidad de la Costa
-"""
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -74,14 +66,14 @@ DATA_CSV = """Year,Term,Applications,Admitted,Enrolled,Retention Rate (%),Studen
 2024,Fall,3500,2100,800,90,88,300,225,175,100
 """
 
-# ─── Page Config ──────────────────────────────────────────────────────────────
+#Page Config
 st.set_page_config(
     page_title="University Student Dashboard",
     page_icon="🎓",
     layout="wide",
 )
 
-# ─── Data Loading & Validation ────────────────────────────────────────────────
+#Data Loading & Validation
 @st.cache_data
 def load_data():
     """
@@ -116,7 +108,7 @@ def load_data():
 
 df = load_data()
 
-# ─── Sidebar Configuration ────────────────────────────────────────────────────
+#Sidebar Configuration
 st.sidebar.image(
     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Escudo_CUC.png/200px-Escudo_CUC.png",
     width=80
@@ -157,7 +149,7 @@ for name in TEAM:
 st.sidebar.markdown("---")
 st.sidebar.caption("Universidad de la Costa · Data Mining")
 
-# ─── Data Filtering & Validation ──────────────────────────────────────────────
+#Data Filtering & Validation
 if not selected_years or not selected_terms:
     st.warning("⚠️ Please select at least one year and term in the filters.")
     st.stop()
@@ -173,7 +165,7 @@ if filtered.empty:
     )
     st.stop()
 
-# ─── Helper Functions for Charts ──────────────────────────────────────────────
+#Helper Functions for Charts
 def create_line_chart(data, x, y, color, title, height=320):
     """
     Create a standardized line chart with markers.
@@ -251,7 +243,7 @@ def create_scatter_chart(data, x, y, title, height=350):
     return fig
 
 
-# ─── Calculate KPIs ───────────────────────────────────────────────────────────
+#Calculate KPIs
 @st.cache_data
 def calculate_kpis(data):
     """
@@ -272,12 +264,12 @@ def calculate_kpis(data):
     }
 
 
-# ─── Header ───────────────────────────────────────────────────────────────────
+#Header
 st.title("🎓 University Student Analytics Dashboard")
 st.caption("Data Mining Activity I · Universidad de la Costa")
 st.markdown("---")
 
-# ─── KPI Cards ────────────────────────────────────────────────────────────────
+#KPI Cards
 st.subheader("📊 Key Performance Indicators")
 
 kpis = calculate_kpis(filtered)
@@ -292,7 +284,7 @@ k5.metric("Admission Rate", f"{kpis['admission_rate']}%")
 
 st.markdown("---")
 
-# ─── Row 1: Line Charts ───────────────────────────────────────────────────────
+#Line Charts
 col1, col2 = st.columns(2)
 
 with col1:
@@ -321,7 +313,7 @@ with col2:
     )
     st.plotly_chart(fig2, use_container_width=True)
 
-# ─── Row 2: Bar Charts ────────────────────────────────────────────────────────
+#Bar Charts
 col3, col4 = st.columns(2)
 
 with col3:
@@ -352,7 +344,7 @@ with col4:
     fig4.update_traces(text=fig4.data[0].y.round(0), textposition='auto', texttemplate='%{text}')
     st.plotly_chart(fig4, use_container_width=True)
 
-# ─── Row 3: Department Breakdown ──────────────────────────────────────────────
+#Department Breakdown
 st.markdown("---")
 st.subheader("🏫 Enrollment by Department")
 
@@ -405,7 +397,7 @@ with col6:
     else:
         st.info("Select at least one department to view enrollment distribution.")
 
-# ─── Row 4: Correlation Analysis ──────────────────────────────────────────────
+#Correlation Analysis
 st.markdown("---")
 st.subheader("🔍 Satisfaction vs Retention Correlation")
 
@@ -422,7 +414,7 @@ fig7 = create_scatter_chart(
 )
 st.plotly_chart(fig7, use_container_width=True)
 
-# ─── Data Export Section ──────────────────────────────────────────────────────
+#Data Export Section
 st.markdown("---")
 st.subheader("📥 Export Data")
 
@@ -461,10 +453,3 @@ with col_exp2:
         mime="text/csv",
         help="Download summary statistics in CSV format"
     )
-
-# ─── Footer ───────────────────────────────────────────────────────────────────
-st.markdown("---")
-st.caption(
-    "📌 Universidad de la Costa · Department of Computer Science and Electronics · "
-    "Data Mining · Prof. José Escorcia-Gutierrez, Ph.D."
-)
