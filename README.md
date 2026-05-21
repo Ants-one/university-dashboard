@@ -8,10 +8,8 @@ Prof. José Escorcia-Gutierrez, Ph.D.
 
 ## 👥 Team Members
 
-- Student Name 1
-- Student Name 2
-- Student Name 3
-- Student Name 4
+- Antwan Davis Ramos Amador
+- Jhonny Cala Ardila
 
 ---
 
@@ -34,37 +32,6 @@ It was built as part of Activity I for the Data Mining course, covering:
 - **Donut Chart** — department enrollment share
 - **Scatter Plot** — correlation between satisfaction and retention
 - **Interactive Filters** — filter by year, term, and department
-
----
-
-## 🚀 How to Run Locally
-
-### 1. Clone this repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Run the app
-
-```bash
-streamlit run app.py
-```
-
-The app will open at `http://localhost:8501`.
-
----
-
-## ☁️ Deployed on Streamlit Cloud
-
-🔗 **Live Dashboard:** [https://YOUR-APP.streamlit.app](https://YOUR-APP.streamlit.app)
 
 ---
 
