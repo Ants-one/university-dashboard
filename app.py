@@ -4,8 +4,8 @@ import plotly.express as px
 from io import StringIO
 from datetime import datetime
 
-# ─── Constants & Configuration ────────────────────────────────────────────────
-TEAM = ["Student Name 1", "Student Name 2", "Student Name 3", "Student Name 4"]
+#Constants & Configuration
+TEAM = ["Antwan Davis Ramos Amador", "Jhonny Cala Ardila"]
 
 # Chart configuration
 CHART_CONFIG = {
